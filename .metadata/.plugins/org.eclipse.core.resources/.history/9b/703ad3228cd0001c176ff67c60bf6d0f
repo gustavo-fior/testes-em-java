@@ -1,0 +1,21 @@
+package br.com.alura.leilao.login;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class CadastroLeilaoPage {
+
+	private WebDriver browser;
+	private static final String URL = "http://localhost:8080/leiloes";
+
+	public CadastroLeilaoPage() {
+		System.setProperty("webdriver.chrome.driver", "drivers/chromedriver.exe");
+		this.browser = new ChromeDriver();
+		this.browser.navigate().to(URL);
+	}
+
+	public void fechar() {
+		this.browser.quit();
+	}
+
+}

@@ -1,0 +1,20 @@
+package br.com.alura.leilao;
+
+import org.junit.jupiter.api.Test;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.opera.OperaDriver;
+
+public class HelloWorldSelenium {
+
+	@Test
+	void hello() {
+		
+		// Instancia um navegador do opera
+		WebDriver browser = new OperaDriver();
+		
+		browser.navigate().to("http://localhost:8080/leiloes");;
+		browser.quit();
+	}
+	
+	
+}

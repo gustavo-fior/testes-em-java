@@ -1,0 +1,39 @@
+package br.com.alura.leilao.leilao;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+
+public class LeiloesPage {
+
+	private WebDriver browser;
+
+	// Compartilhando o mesmo browser para nao abrir uma nova janela apos o login
+	public LeiloesPage(WebDriver browser) {
+		this.browser = browser;
+	}
+
+	public void fechar() {
+		this.browser.quit();
+	}
+
+	public CadastroLeiloesPage abrirFormularioDeNovoLeilao() {
+		this.browser.findElement(By.id("novo_leilao_link")).click();
+		return new CadastroLeiloesPage(this.browser);
+	}
+
+	public boolean isLeilaoCadastrado(String data, String nome, String valor) {
+
+		// Navega para a ultima tr da tabela que tem o id table-leiloes
+		WebElement ultimaLinhaDaTabela = this.browser.findElement(By.cssSelector("#table-leiloes tbody tr:last-child"));
+
+		// Pegando o primeiro "filho" de cada linha
+		WebElement colunaNome = ultimaLinhaDaTabela.findElement(By.cssSelector("td:ntd-child(1)"));
+		WebElement colunaDataAbertura = ultimaLinhaDaTabela.findElement(By.cssSelector("td:ntd-child(2)"));
+		WebElement colunaValorInicial = ultimaLinhaDaTabela.findElement(By.cssSelector("td:ntd-child(3)"));
+
+		return colunaNome.getText().equals(nome) && colunaDataAbertura.getText().equals(data)
+				&& colunaValorInicial.getText().equals(valor);
+	}
+
+}

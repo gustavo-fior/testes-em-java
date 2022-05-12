@@ -1,0 +1,15 @@
+package br.com.alura.leilao.base;
+
+import org.openqa.selenium.WebDriver;
+
+public class PageObject {
+
+	// Para as classes filhas tambem poderem acessar
+	protected WebDriver browser;
+
+	// Compartilhando o mesmo browser para nao abrir uma nova janela apos o login
+	public PageObject(WebDriver browser) {
+		this.browser = browser;
+	}
+	
+}

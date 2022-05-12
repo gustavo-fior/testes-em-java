@@ -1,0 +1,22 @@
+package br.com.alura.leilao.login;
+
+import org.junit.jupiter.api.Test;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class LoginTest {
+
+	@Test
+	void deveriaLogarUmUsuarioCorretamente() {
+
+		// Setando o drive do chrome
+		System.setProperty("webdriver.chrome.driver", "drivers/chromedriver.exe");
+
+		// Instancia um navegador do opera
+		WebDriver browser = new ChromeDriver();
+
+		browser.navigate().to("http://localhost:8080/login");
+
+	}
+
+}

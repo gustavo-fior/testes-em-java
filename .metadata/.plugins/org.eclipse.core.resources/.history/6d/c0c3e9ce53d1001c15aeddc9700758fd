@@ -1,0 +1,19 @@
+package br.com.alura.leilao.login;
+
+import org.openqa.selenium.WebDriver;
+
+public class CadastroLeilaoPage {
+
+	private WebDriver browser;
+	private static final String URL = "http://localhost:8080/leiloes";
+
+	// Compartilhando o mesmo browser para nao abrir uma nova janela apos o login
+	public CadastroLeilaoPage(WebDriver browser) {
+		this.browser = browser;
+	}
+
+	public void fechar() {
+		this.browser.quit();
+	}
+
+}

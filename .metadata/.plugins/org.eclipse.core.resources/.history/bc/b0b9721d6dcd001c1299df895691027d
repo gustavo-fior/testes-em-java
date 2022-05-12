@@ -1,0 +1,21 @@
+package br.com.alura.leilao.login;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class LoginPage {
+
+	private WebDriver browser;
+	private static final String URL = "localhost:8080/login";
+	
+	public LoginPage() {
+		System.setProperty("webdriver.chrome.driver", "drivers/chromedriver.exe");
+		this.browser = new ChromeDriver();
+		this.browser.navigate().to(URL);
+	}
+
+	public void fechar() {
+		this.browser.quit();
+	}
+	
+}

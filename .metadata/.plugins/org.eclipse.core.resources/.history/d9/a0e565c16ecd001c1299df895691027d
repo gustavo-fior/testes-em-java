@@ -1,0 +1,59 @@
+package br.com.alura.leilao.login;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class LoginPage {
+
+	private WebDriver browser;
+	private static final String URL = "localhost:8080/login";
+	private static final String URL_ERRO = "localhost:8080/login?error";
+
+	public LoginPage() {
+		System.setProperty("webdriver.chrome.driver", "drivers/chromedriver.exe");
+		this.browser = new ChromeDriver();
+		this.browser.navigate().to(URL);
+	}
+
+	public void fechar() {
+		this.browser.quit();
+	}
+
+	public void submitLoginForm(String username, String password) {
+
+		// Achamos o textField do username e passamos a string
+		browser.findElement(By.id("username")).sendKeys(username);
+
+		browser.findElement(By.id("password")).sendKeys(password);
+
+		// Achamos o form e submetemos
+		browser.findElement(By.id("login-form")).submit();
+	}
+
+	public boolean estaNaPaginaDeLogin() {
+		return browser.getCurrentUrl().equals(URL);
+	}
+
+	public boolean estaNaPaginaDeErroDoLogin() {
+		return browser.getCurrentUrl().equals(URL_ERRO);
+	}
+
+	public String getUsuarioLogado() {
+		try {
+			return browser.findElement(By.id("logged-username")).getText();
+		} catch (NoSuchElementException e) {
+			return null;
+		}
+	}
+
+	public void navegaParaPaginaDeLances() {
+		browser.navigate().to("http://localhost:8080/leiloes/2");
+	}
+
+	public boolean contem(String texto) {
+		return browser.getPageSource().contains("texto");
+	}
+
+}
